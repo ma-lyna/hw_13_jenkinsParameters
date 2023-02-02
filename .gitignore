@@ -1,7 +1,5 @@
-# Idea
-.idea
-*.iml
-
-# Gradle
-.gradle
-build
+\.gradle
+\.idea
+\build
+*.log
+*.class
