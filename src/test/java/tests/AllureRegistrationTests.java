@@ -25,13 +25,13 @@ public class AllureRegistrationTests extends TestBase {
     @Test
     void fillRegistrationFormTest () {
 
-        step("Open registrations form", () -> {
+        step("Open page", () -> {
         open("/automation-practice-form");
         executeJavaScript("$('footer').remove()");
         executeJavaScript("$('#fixedban').remove()");
         });
 
-        step("Fill form", () -> {
+        step("Fill in the form", () -> {
         $("#firstName").setValue("Marina");
         $("#lastName").setValue("Konovalchik");
         $("#userEmail").setValue("marina.konovalchik@gmail.com");
@@ -55,7 +55,7 @@ public class AllureRegistrationTests extends TestBase {
         $("#submit").click();
         });
 
-        step("Check form results", () -> {
+        step("Verify final results", () -> {
         $(".modal-content").shouldBe(Condition.visible);
         $(".modal-content").shouldHave(text("Marina"),
                 text("Konovalchik"),
