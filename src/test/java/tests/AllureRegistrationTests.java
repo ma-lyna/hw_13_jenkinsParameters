@@ -16,9 +16,10 @@ public class AllureRegistrationTests extends TestBase {
 
     @BeforeAll
     static void beforeAll() {
-        Configuration.holdBrowserOpen = true;
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1920x1080";
+        Configuration.timeout = 10000;
+        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
     }
 
     @Test

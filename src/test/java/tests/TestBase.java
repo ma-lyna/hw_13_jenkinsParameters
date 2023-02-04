@@ -10,7 +10,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 public class TestBase {
         @BeforeAll
         static void beforeAll() {
-            Configuration.holdBrowserOpen = true;
+
             Configuration.baseUrl = "https://demoqa.com";
             Configuration.browserSize = "1920x1080";
             Configuration.timeout = 10000;
