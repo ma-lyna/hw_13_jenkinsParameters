@@ -10,8 +10,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class TestBase {
-
-
         @BeforeAll
         static void beforeAll() {
             Configuration.browser = System.getProperty("browser", "chrome");
@@ -20,7 +18,6 @@ public class TestBase {
             Configuration.timeout = 10000;
             Configuration.baseUrl = System.getProperty("baseUrl", "https://demoqa.com");
             Configuration.remote = System.getProperty("remoteUrl", "https://user1:1234@selenoid.autotests.cloud/wd/hub");
-
 
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setCapability("enableVNC", true);

@@ -3,22 +3,25 @@ plugins {
     id 'io.qameta.allure' version '2.10.0'
 }
 
-repositories {
-    mavenCentral()
-}
+group 'qa.demo'
+version '1.0-SNAPSHOT'
 
 allure {
     report {
-        version.set("2.19.0")
+        version.set("2.20.0")
     }
     adapter { // отвечает за появление папочки build/allure-results
         aspectjWeaver.set(true) //обработка аннотации @Step
         frameworks {
-            junit5 { //название фреймворка
-                adapterVersion.set("2.19.0") //версия интеграции фреймворка и Allure
+            junit5 {
+                adapterVersion.set("2.20.0")
             }
         }
     }
+}
+
+repositories {
+    mavenCentral()
 }
 
 tasks.withType(JavaCompile) {
@@ -26,12 +29,13 @@ tasks.withType(JavaCompile) {
 }
 
 dependencies {
-    testImplementation (
+    testImplementation(
+            'com.codeborne:selenide:6.10.3',
             "com.github.javafaker:javafaker:1.0.2",
-            "com.codeborne:selenide:6.9.0",
-            "io.qameta.allure:allure-selenide:2.19.0",
             "org.junit.jupiter:junit-jupiter:5.9.1",
-            "org.slf4j:slf4j-simple:1.7.32"
+            "io.qameta.allure:allure-selenide:2.20.0",
+            "org.aspectj:aspectjweaver:1.9.9.1",
+            'org.slf4j:slf4j-simple:2.0.5'
     )
 }
 
@@ -78,17 +82,9 @@ task tag_example_test(type: Test) {
         excludeTags("prod")
     }
 }
-
-help {
-    doFirst {
-        println ""
-        println "************************************************************************ "
-        println "***                                                                  *** "
-        println "*** Welcome to https://github.com/qa-guru/demoqa-test-16!            *** "
-        println "***                                                                  *** "
-        println "*** ./gradlew help                                                   *** "
-        println "***                                                                  *** "
-        println "************************************************************************ "
-        println ""
+task tag_homework(type: Test) {
+    useJUnitPlatform {
+        includeTags("regress", "regress_old_package")
+        excludeTags("smoke")
     }
 }
