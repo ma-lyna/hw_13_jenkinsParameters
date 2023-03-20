@@ -3,88 +3,49 @@ plugins {
     id 'io.qameta.allure' version '2.10.0'
 }
 
-group 'qa.demo'
-version '1.0-SNAPSHOT'
+repositories {
+    mavenCentral()
+}
+
+def allureVersion = "2.19.0",
+    slf4jVersion = "1.7.32"
 
 allure {
     report {
-        version.set("2.20.0")
+        version.set(allureVersion)
     }
     adapter { // отвечает за появление папочки build/allure-results
         aspectjWeaver.set(true) //обработка аннотации @Step
         frameworks {
-            junit5 {
-                adapterVersion.set("2.20.0")
+            junit5 { //название фреймворка
+                adapterVersion.set(allureVersion) //версия интеграции фреймворка и Allure
             }
         }
     }
 }
 
-repositories {
-    mavenCentral()
-}
-
-tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
-}
-
 dependencies {
     testImplementation(
-            'com.codeborne:selenide:6.10.3',
-            "com.github.javafaker:javafaker:1.0.2",
+            "com.codeborne:selenide:6.12.2",
+            "io.qameta.allure:allure-selenide:$allureVersion",
+            "com.github.javafaker:javafaker:0.12",
             "org.junit.jupiter:junit-jupiter:5.9.1",
-            "io.qameta.allure:allure-selenide:2.20.0",
-            "org.aspectj:aspectjweaver:1.9.9.1",
-            'org.slf4j:slf4j-simple:2.0.5'
+            "org.slf4j:slf4j-simple:$slf4jVersion"
     )
 }
 
-tasks.withType(Test) {
-    systemProperties(System.getProperties())
+test {
     useJUnitPlatform()
+}
 
-    testLogging {
-        lifecycle {
-            events "started", "skipped", "failed", "standard_error", "standard_out"
-            exceptionFormat "short"
-        }
+task simple_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("simple")
     }
 }
 
-task smoke_tests(type: Test) {
+task remote_test(type: Test) {
     useJUnitPlatform {
-        includeTags("smoke")
-    }
-}
-
-task one_property_test(type: Test) {
-    useJUnitPlatform {
-        includeTags("one_property")
-    }
-}
-
-task hello_test(type: Test) {
-    useJUnitPlatform {
-        includeTags("hello")
-    }
-}
-
-task two_test(type: Test) {
-    useJUnitPlatform {
-        includeTags("one_property")
-        includeTags("hello")
-    }
-}
-
-task tag_example_test(type: Test) {
-    useJUnitPlatform {
-        includeTags("needed", "negative")
-        excludeTags("prod")
-    }
-}
-task tag_homework(type: Test) {
-    useJUnitPlatform {
-        includeTags("regress", "regress_old_package")
-        excludeTags("smoke")
+        includeTags("remote")
     }
 }

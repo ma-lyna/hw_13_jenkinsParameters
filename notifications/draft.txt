@@ -1,0 +1,45 @@
+
+-1001539660633
+
+
+
+
+
+https://api.telegram.org/bot5966922198:AAFdaEMagIueXG46cQTOPGLlZ8T-rA3w_Ok/getUpdates
+
+
+
+
+
+
+
+curl -X POST -H 'Content-Type: application/json' -d '{"chat_id": "-1001539660633", "text": "Marina's message", "disable_notification": true}' https://api.telegram.org/bot5966922198:AAFdaEMagIueXG46cQTOPGLlZ8T-rA3w_Ok/sendMessage
+
+
+
+
+
+curl -X POST \
+     -H 'Content-Type: application/json' \
+     -d '{"chat_id": "-1001539660633", "text": "This is a test from curl", "disable_notification": true}' \
+     https://api.telegram.org/bot5966922198:AAFdaEMagIueXG46cQTOPGLlZ8T-rA3w_Ok/sendMessage
+
+
+
+     java "-DconfigFile=notifications/telegram.json" -jar notifications/allure-notifications-4.2.1.jar
+
+java \
+"-DconfigFile=notifications/telegram.json" \
+-jar notifications/allure-notifications-4.2.1.jar
+
+
+     java "-DconfigFile=notifications/telegram.json" -notifications/allure-notifications-4.2.1.jarjar notifications/allure-notifications-4.2.1.jar
+
+
+
+
+     java
+     "-DconfigFile=notifications/telegram.json"
+     -jar notifications/allure-notifications-4.2.1.jar
+
+
