@@ -19,9 +19,9 @@ public class TestBase {
             Configuration.baseUrl = System.getProperty("baseUrl", "https://demoqa.com");
             Configuration.remote = System.getProperty("remoteUrl", "https://user1:1234@selenoid.autotests.cloud/wd/hub");
 
-              DesiredCapabilities capabilities = new DesiredCapabilities();
-            // capabilities.setCapability("enableVNC", true);
-          // capabilities.setCapability("enableVideo", true);
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setCapability("enableVNC", true);
+            capabilities.setCapability("enableVideo", true);
             Configuration.browserCapabilities = capabilities;
        }
 
